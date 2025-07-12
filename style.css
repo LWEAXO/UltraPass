@@ -1,0 +1,704 @@
+   :root {
+      --primary: #7c4dff;
+      --primary-light: #b47cff;
+      --primary-dark: #4a1dcc;
+      --text: #f5f6fa;
+      --text-secondary: #dcdde1;
+      --bg: #1a1a2e;
+      --bg-secondary: #16213e;
+      --card: #0f3460;
+      --success: #00e676;
+      --warning: #ffea00;
+      --danger: #ff3d00;
+      --glass: rgba(255, 255, 255, 0.05);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+
+    [data-theme="light"] {
+      --primary: #7c4dff;
+      --primary-light: #b47cff;
+      --primary-dark: #4a1dcc;
+      --text: #2d3436;
+      --text-secondary: #636e72;
+      --bg: #f8f9fa;
+      --bg-secondary: #e9ecef;
+      --card: #ffffff;
+      --glass: rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      overflow: hidden;
+      height: 100vh;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+      background-image: 
+        radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.1) 0px, transparent 50%);
+      transition: var(--transition);
+    }
+
+    /* GitHub Button */
+    .github-corner {
+      position: fixed;
+      top: 650px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .github-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+    }
+
+    .github-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .container {
+      height: calc(100vh - 40px);
+      display: grid;
+      grid-template-rows: auto 1fr; 
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        grid-template-columns: 400px 1fr;
+      }
+    }
+
+    .settings-panel, .results-panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Glassmorphism Card */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      margin-bottom: 10px;
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Header Styles */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Password Display */
+    .password-display {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .password-field {
+      display: flex;
+      height: 60px;
+      margin-bottom: 15px;
+    }
+
+    #password {
+      flex: 1;
+      padding: 0 20px;
+      font-size: 1.2rem;
+      background: var(--bg-secondary);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px 0 0 12px;
+      color: var(--text);
+      font-family: 'Fira Code', monospace;
+      transition: var(--transition);
+    }
+
+    #password:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    #copy-btn {
+      width: 60px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0 12px 12px 0;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    #copy-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Strength Meter */
+    .strength-meter {
+      margin-top: 20px;
+    }
+
+    .strength-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .strength-bar-container {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .strength-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+      transition: var(--transition);
+      border-radius: 4px;
+    }
+
+    .strength-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    #strength-text {
+      font-weight: 600;
+    }
+
+    #entropy {
+      font-family: 'Fira Code', monospace;
+      color: var(--primary-light);
+    }
+
+    /* Settings */
+    .settings {
+      margin-bottom: 15px;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-label {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .setting-label i {
+      color: var(--primary-light);
+      width: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .range-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 60%;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 6px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 0 8px rgba(124, 77, 255, 0.5);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      background: var(--primary-light);
+    }
+
+    #length-value {
+      font-family: 'Fira Code', monospace;
+      width: 30px;
+      text-align: center;
+      background: var(--bg-secondary);
+      padding: 4px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    /* Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 22px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-secondary);
+      transition: var(--transition);
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: var(--transition);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(23px);
+      background-color: white;
+    }
+
+    /* Password Types */
+    .password-types {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    @media (min-width: 768px) {
+      .password-types {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .type-btn {
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: none;
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .type-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 10px rgba(124, 77, 255, 0.3);
+    }
+
+    .type-btn:hover {
+      background: var(--card);
+    }
+
+    /* Buttons */
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card);
+      transform: translateY(-2px);
+    }
+
+    /* History */
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .history-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+    }
+
+    #clear-history {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+
+@media (max-width: 1199px) {
+  body {
+    overflow: auto; /* Mobilde scroll'u geri getir */
+  }
+  
+  .container {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+}
+
+    #clear-history:hover {
+      color: var(--danger);
+    }
+
+    #history-list {
+      list-style: none;
+      min-height: 0;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    #history-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    #history-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 10px;
+    }
+
+    #history-list::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    #history-list li {
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    #history-list li:hover {
+      transform: translateX(3px);
+      background: var(--card);
+    }
+
+    .history-password {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-right: 10px;
+    }
+
+    .history-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .history-date {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .history-strength {
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .strength-weak {
+      background: rgba(255, 61, 0, 0.2);
+      color: var(--danger);
+    }
+
+    .strength-medium {
+      background: rgba(255, 234, 0, 0.2);
+      color: var(--warning);
+    }
+
+    .strength-strong {
+      background: rgba(0, 230, 118, 0.2);
+      color: var(--success);
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 5px;
+    }
+
+    .copy-history-btn, .delete-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .copy-history-btn:hover {
+      color: var(--primary);
+      background: rgba(124, 77, 255, 0.1);
+    }
+
+    .delete-btn:hover {
+      color: var(--danger);
+      background: rgba(255, 61, 0, 0.1);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    #theme-switcher {
+      background: var(--primary);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    #theme-switcher:hover {
+      transform: scale(1.1) rotate(30deg);
+      background: var(--primary-light);
+    }
+
+    #theme-switcher .fa-sun {
+      display: none;
+    }
+
+    [data-theme="light"] #theme-switcher .fa-sun {
+      display: block;
+    }
+
+    [data-theme="light"] #theme-switcher .fa-moon {
+      display: none;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .password-types {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .range-container {
+        width: 50%;
+      }
+      
+      .history-info {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+      }
+      
+      .history-date {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .github-btn span {
+        display: none;
+      }
+      
+      .github-btn {
+        width: 45px;
+        height: 45px;
+        justify-content: center;
+        padding: 0;
+      }
+      
+      .password-types {
+        grid-template-columns: 1fr;
+      }
+      
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraPass</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="https://github.githubassets.com/favicons/favicon.png">
+</head>
+<body>
+  <div class="github-corner">
+    <a href="https://github.com/LWEAXO" target="_blank" class="github-btn">
+      <i class="fab fa-github"></i>
+      <span>LWEAXO</span>
+    </a>
+  </div>
+
+  <div class="theme-toggle">
+    <button id="theme-switcher">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="settings-panel">
+      <div class="card" style="animation: slideUp 0.3s ease">
+        <header>
+          <h1 class="logo">UltraPass</h1>
+          <p class="subtitle">Güçlü ve güvenli şifreler oluşturun</p>
+        </header>
+      </div>
+
+      <div class="card" style="animation: slideUp 0.4s ease">
+        <div class="password-types">
+          <button class="type-btn active" data-type="random">Rastgele</button>
+          <button class="type-btn" data-type="pronounceable">Telaffuz Edilebilir</button>
+          <button class="type-btn" data-type="memorable">Akılda Kalıcı</button>
+          <button class="type-btn" data-type="pin">PIN Kodu</button>
+        </div>
+
+        <div class="setting-item">
+          <label class="setting-label">
+            <i class="fas fa-ruler-horizontal"></i>
+            <span>Şifre Uzunluğu</span>
+          </label>
+          <div class="range-container">
+            <input type="range" id="length" min="4" max="64" value="16">
+            <span id="length-value">16</span>
+          </div>
+        </div>
+
+        <div class="setting-item toggle">
+          <label class="setting-label">
+            <i class="fas fa-font"></i>
+            <span>Büyük Harf (A-Z)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="uppercase" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item toggle">
+          <label class="setting-label">
+            <i class="fas fa-font"></i>
+            <span>Küçük Harf (a-z)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="lowercase" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item toggle">
+          <label class="setting-label">
+            <i class="fas fa-hashtag"></i>
+            <span>Rakamlar (0-9)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="numbers" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item toggle">
+          <label class="setting-label">
+            <i class="fas fa-exclamation"></i>
+            <span>Semboller (!@#$%)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="symbols" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item toggle">
+          <label class="setting-label">
+            <i class="fas fa-ban"></i>
+            <span>Benzer Karakterleri Çıkart (1,l,0,O)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="exclude-similar">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions" style="animation: slideUp 0.5s ease">
+        <button id="generate" class="btn btn-primary">
+          <i class="fas fa-bolt"></i> Şifre Oluştur
+        </button>
+        <button id="save" class="btn btn-secondary">
+          <i class="fas fa-save"></i> Şifreyi Kaydet
+        </button>
+      </div>
+    </div>
+
+    <div class="results-panel">
+      <div class="card password-display" style="animation: slideUp 0.3s ease">
+        <div class="password-field">
+          <input type="text" id="password" readonly placeholder="Şifreniz burada görünecek...">
+          <button id="copy-btn">
+            <i class="far fa-copy"></i>
+          </button>
+        </div>
+        
+        <div class="strength-meter">
+          <div class="strength-labels">
+            <span>Zayıf</span>
+            <span>Çok Güçlü</span>
+          </div>
+          <div class="strength-bar-container">
+            <div class="strength-bar"></div>
+          </div>
+          <div class="strength-info">
+            <span id="strength-text">Şifre Gücü</span>
+            <span id="entropy">0 bit entropi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card history" style="animation: slideUp 0.6s ease">
+        <div class="history-header">
+          <h3 class="history-title">
+            <i class="fas fa-history"></i> Şifre Geçmişi
+          </h3>
+          <button id="clear-history">
+            <i class="fas fa-trash-alt"></i> Tümünü Temizle
+          </button>
+        </div>
+        
+        <ul id="history-list"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
