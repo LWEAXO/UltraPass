@@ -31,7 +31,7 @@ open index.html      # Mac
 
 ## 📦 Kullanım
 
-[![Open in Browser](https://img.shields.io/badge/Canlı_Demo-Test_Edin-2a9d8f?style=for-the-badge)](https://yakında)
+[![Open in Browser](https://img.shields.io/badge/Canlı_Demo-Test_Edin-2a9d8f?style=for-the-badge)](https://ultra-pass.vercel.app/)
 
 ## 🛠️ Teknoloji Stacki
 
